@@ -1,0 +1,115 @@
+Dresser DXD Series Precision Digital Pressure Transducer Driver for LabView
+
+Create a folder named Dresser DXD in the \Program Files\National Instruments\LabVIEW\instr.lib\ path and copy the driver files to it to have the icons show in the LabVIEW functions palette.  The hiearchy will be preserved and the .mnu files tell labVIEW how the palette should look.  The driver VI's will appear under the intrument drivers icon on the functions palette.
+
+The Diagram of 'Dresser DXD VI Tree.vi' (not included in the palette) shows all driver VI's for reading from and writing to the Dresser DXD Series pressure transducer.  The 'Dresser DXD Initialize.vi' and 'Dresser DXD Close.vi' VI's are required for all applications.  Refer to the "Getting Started" VI's to get an understanding of how to use the component VI's together.  The "Getting Started" VI's allow the user to read all settings, determine the bits per second rate and the unit address, get and set the user tare value, get and set the update rate, continuously read the temperature and pressure, and calibrate.
+
+Read VI Info and the descriptions for the controls and indicators for help in understanding their functions.
+
+In LabVIEW, Options>>Block Diagram>>Use control caption for subVI tip-strips should be unchecked for the terminal labels to show properly when a driver VI is placed on a calling VI's diagram.
+
+BE VERY CAREFUL USING ANY VI'S THAT WRITE TO THE EEPROM!  If used incorrectly, they can modify the EEPROM in undesirable ways and render the pressure transducer temporarily useless.  If this occurs, the factory default values will need to be reloaded.
+-----------------------------------------------------------------------------------------------------------------------------
+
+V2.0.0
+May, 2002
+
+Revised by:
+BLOOMY CONTROLS, INC
+WINDSOR, CT 06095, USA
+860-298-9925
+www.bloomy.com
+
+Known to work with DXD firmware version 3.23 and LabVIEW 6.0.2 or later.
+
+This version is not compatible with version 1.0.0 because so many changes have been made to the fundamental structure of the VI's.
+
+The following changes have been made to the original driver (V1.0.0) released February, 2000:
+
+- Deleted Dresser DXD VISA Open.vi because the VISA Open primitive is no longer required to initiate a VISA session.
+- Removed Dresser DXD VISA Open.vi from Dresser DXD Initialize.vi, Dresser DXD Find Baud Rate.vi, and Dresser DXD Read Settings.vi.
+- Edited all of the Getting Started VI's by removing the string control that specified the serial port and replaced with the VISA session control which automatically lists installed ports.
+- Changed the VI Properties >> Documentation of every driver VI to indicate the new V2.0.0 revision number and April, 2002 date.
+- Edited Dresser DXD Set Update Rate Example.vi to accomodate 16 new update rates and increased time delays.
+- Edited Dresser DXD Get and Set Update Rate.vi to accomodate the changes to Dresser DXD Set Update Rate Example.vi and Dresser DXD Get Update Rate Example.vi
+- Renamed Dresser DXD Read Fast Pressure.vi to Dresser DXD Read Fast Pressure (PSI).vi
+- Renamed Dresser DXD Read Pressure.vi to Dresser DXD Read Pressure (PSI).vi
+- Edited Dresser DXD Multiple Transducer Pressure Read.vi to return the pressure measurement in the selected units to accomodate the new alternate engineering units.
+- Added sign character to the User Span (us) write command in Dresser DXD Write User Span.vi
+- Added ACK/NAK and A/N handling to Dresser DXD Read Error Check.vi
+- Modified all driver VI's by removing the error parsing so errors may be handled as desired in higher level VI's.
+- Modified all driver VI's that read a string from the transducer by adding a string indicator for passing the raw returned string out of the VI.
+- Modified the way all of the driver VI's that parse the response string actually parse the string to accomodate the ACK/NAK and A/N error status modes.
+- Added synchronous update capability to Data\Dresser DXD Read Pressure (PSI).vi, Data\Dresser DXD Read Pressure (Bar).vi, Data\Dresser DXD Read Pressure (cm of water).vi, Data\Dresser DXD Read Pressure (ft water).vi, Data\Dresser DXD Read Pressure (hectoPascal).vi, Data\Dresser DXD Read Pressure (in Hg).vi, Data\Dresser DXD Read Pressure (in water).vi, Data\Dresser DXD Read Pressure (KiloPascal).vi, Data\Dresser DXD Read Pressure (MegaPascal).vi, Data\Dresser DXD Read Pressure (milliBar).vi, Data\Dresser DXD Read Pressure (mm Hg).vi, and Data\Dresser DXD Read Pressure (numeric).vi 
+- Added termination character selection to Dresser DXD Initialize.vi and Getting Started\Dresser DXD Find Baud Rate.vi because this can be selected with the Mode Byte in the Dresser DXD Pressure Transducer.
+- Updated Dresser DXD VI Tree.vi with driver additions and changes
+- Updated the LabVIEW .mnu files so the new VI's show in the LabVIEW palette
+
+
+The following additions have been made to the original driver (V1.0.0) released February, 2000:
+
+- Getting Started\Dresser DXD Multiple Transducer Pressure Read.vi
+- Application Examples\Dresser DXD Get Update Rate Example.vi
+- Application Examples\Dresser DXD Get Mode Example.vi
+- Application Examples\Dresser DXD Set Mode Example.vi
+- Getting Started\Dresser DXD Get and Set Mode.vi
+- Data\Dresser DXD Read Pressure (Bar).vi
+- Data\Dresser DXD Read Pressure (cm of water).vi
+- Data\Dresser DXD Read Pressure (ft water).vi
+- Data\Dresser DXD Read Pressure (hectoPascal).vi
+- Data\Dresser DXD Read Pressure (in Hg).vi
+- Data\Dresser DXD Read Pressure (in water).vi
+- Data\Dresser DXD Read Pressure (KiloPascal).vi
+- Data\Dresser DXD Read Pressure (MegaPascal).vi
+- Data\Dresser DXD Read Pressure (milliBar).vi
+- Data\Dresser DXD Read Pressure (mm Hg).vi
+- Data\Dresser DXD Read Pressure (numeric).vi
+- Utilities\Dresser DXD Write Filter Amount.vi
+- Utilities\Dresser DXD Read Filter Amount.vi
+- Utilities\Dresser DXD Write Filter Band.vi
+- Utilities\Dresser DXD Read Filter Band.vi
+- Error Handling\Dresser DXD Read Error Flag.vi
+- Getting Started\Dresser DXD Read Error Flag Pop-Up.vi
+- Utilities\Dresser DXD Read After Write.vi
+- Data\Dresser DXD Synchronous Read.vi
+- Application Examples\Dresser DXD Get Transmit Delay Example.vi
+- Application Examples\Dresser DXD Set Transmit Delay Example.vi
+- Getting Started\Dresser DXD Get and Set Transmit Delay.vi
+- Getting Started\Dresser DXD ATS Variant Tester.vi
+- Getting Started\Dresser DXD Toggle Data Structure.vi
+- ATS Variant\Dresser DXD Set ATS Mode.vi
+- ATS Variant\Dresser DXD Set DXD Mode.vi
+- ATS Variant\Dresser DXD - ATS Read Pressure (PSI).vi
+- ATS Variant\Dresser DXD - ATS Read Pressure (numeric).vi
+- ATS Variant\Dresser DXD - ATS Read User Tare.vi
+- ATS Variant\Dresser DXD - ATS Read User Zero.vi
+- ATS Variant\Dresser DXD - ATS Read User Span.vi
+- ATS Variant\Dresser DXD - ATS Write User Tare.vi
+- ATS Variant\Dresser DXD - ATS Write User Zero.vi
+- ATS Variant\Dresser DXD - ATS Write User Span.vi
+- ATS Variant\Dresser DXD - ATS Read Bit per Second Rate.vi
+- ATS Variant\Dresser DXD - ATS Read Unit Address.vi
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+V1.0.0
+February, 2000
+
+Written by:
+BLOOMY CONTROLS, INC
+WINDSOR, CT 06095, USA
+860-298-9925
+www.bloomy.com
+
+
+Known to work with firmware version 2.15.
+
+Definition: VI stands for virtual instrument, a National Instruments term for the LabVIEW program.  VI's have three main parts: the front panel, the block diagram, and the icon/connector.
+
+Extract the driver files to \Program Files\National Instruments\LabVIEW 6\instr.lib\Dresser DXD to have the icons show in the LabVIEW functions palette.  The hiearchy will be preserved and the .mnu files tell labVIEW how the palette should look.  The driver VI's will appear under the intrument drivers icon on the functions palette.
+
+The Diagram of 'Dresser DXD VI Tree.vi' (not included in the palette) shows all driver VI's for reading from and writing to the Dresser DXD Series pressure transducer.  The 'Dresser DXD Initialize.vi' and 'Dresser DXD Close.vi' VI's are required for all applications.  Refer to the "Getting Started" VI's to get an understanding of how to use the component VI's together.  The "Getting Started" VI's allow the user to read all settings, determine the bits per second rate and the unit address, get and set the user tare value, get and set the update rate, continuously read the temperature and pressure, and calibrate.
+
+Read VI Info and the descriptions for the controls and indicators for help in understanding their functions.
+
+BE VERY CAREFUL USING ANY VI'S THAT WRITE TO THE EEPROM!  If used incorrectly, they can modify the EEPROM in undesirable ways and render the pressure transducer temporarily useless.  If this occurs, the factory default values will need to be reloaded.
